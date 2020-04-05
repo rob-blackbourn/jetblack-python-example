@@ -1,0 +1,16 @@
+[Unit]
+Description=Example python service
+After=syslog.target
+
+[Service]
+Type=simple
+User=jetblack
+Group=jetblack
+WorkingDirectory=/opt/python-example
+ExecStart=/opt/python-example/bin/python-example
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
