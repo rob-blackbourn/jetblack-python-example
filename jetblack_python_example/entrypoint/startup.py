@@ -3,7 +3,7 @@
 
 import sys
 
-from python_example import start_server
+from jetblack_python_example import start_server
 
 
 def main():
