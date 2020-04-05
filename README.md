@@ -20,7 +20,7 @@ sudo sh -c '. /opt/jetblack-python-example/bin/activate && pip install jetblack-
 Setup the service
 
 ```bash
-sudo cp -r etc /lib/systemd/system
+sudo cp -r etc/* /lib/systemd/system
 sudo systemctl daemon-reload
 ```
 
