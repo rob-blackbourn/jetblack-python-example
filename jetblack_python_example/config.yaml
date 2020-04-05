@@ -3,7 +3,7 @@ app:
   start_message: ${START_MESSAGE}
   stop_message: ${STOP_MESSAGE}
 
-logging:
+logging_dev:
   version: 1
   formatters:
     simple:
@@ -24,3 +24,35 @@ logging:
     level: WARNING
     handlers:
       - console
+
+logging:
+  version: 1
+  formatters:
+    simple:
+      format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: simple
+      stream: ext://sys.stdout
+    file:
+      class: logging.handlers.TimedRotatingFileHandler
+      formatter: simple
+      filename: /var/log/jetblack-python-example.log
+      backupCount: 3
+      when: m
+      interval: 1
+  loggers:
+    jetblack_python_example:
+      level: DEBUG
+      handlers:
+        - console
+        - file
+      propagate: false
+  root:
+    level: WARNING
+    handlers:
+      - console
+      - file
+  

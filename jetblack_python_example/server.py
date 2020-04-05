@@ -5,6 +5,7 @@ import asyncio
 from asyncio import AbstractEventLoop, Event
 import logging
 import logging.config
+import os
 import os.path
 import signal
 from typing import Any, List, Mapping
@@ -45,8 +46,10 @@ def _load_config(filename: str) -> Mapping[str, Any]:
 
 
 def _initialise_logging(config: Mapping[str, Any]) -> None:
-    if 'logging' in config:
-        logging.config.dictConfig(config['logging'])
+    python_env = os.environ.get('PYTHON_ENV')
+    key = f'logging_{python_env}' if python_env else 'logging'
+    if key in config:
+        logging.config.dictConfig(config[key])
 
 
 def _make_cancellation_event(loop: AbstractEventLoop) -> Event:
